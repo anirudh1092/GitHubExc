@@ -17,11 +17,6 @@ public class ReposActivityRepository implements ReposRepository {
     public ReposActivityRepository(GitHubService service) {
         this.service = service;
         reposData=new ArrayList<>();
-        this.timestamp=System.currentTimeMillis();
-    }
-
-    private boolean isTimeExpired(){
-        return System.currentTimeMillis() - timestamp < 20*1000;
     }
 
 
