@@ -15,6 +15,7 @@ public class CommitsActivityRepositorty implements  CommitsRepository {
 
     private GitHubService service;
     List<UserCommits>userCommitsList;
+
     public CommitsActivityRepositorty(GitHubService service) {
         this.service = service;
         userCommitsList=new ArrayList<>();

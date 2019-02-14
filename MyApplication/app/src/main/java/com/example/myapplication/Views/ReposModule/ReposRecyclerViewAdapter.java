@@ -1,6 +1,7 @@
 package com.example.myapplication.Views.ReposModule;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.API.Models.GitHubRepos;
 import com.example.myapplication.R;
+import com.example.myapplication.Views.CommitsModule.CommitsActivity;
 
 import java.util.List;
 
@@ -64,9 +66,9 @@ public class ReposRecyclerViewAdapter extends RecyclerView.Adapter<ReposRecycler
                 @Override
                 public void onClick(View v) {
                     int position=getLayoutPosition();
-//                    Intent intent= new Intent(context, CommitsActivity.class);
-//                    intent.putExtra("SelectedRepo",dataList.get(position));
-//                    context.startActivity(intent);
+                    Intent intent= new Intent(context, CommitsActivity.class);
+                    //intent.putExtra("SelectedRepo",dataList.get(position));
+                    context.startActivity(intent);
                 }
             });
         }

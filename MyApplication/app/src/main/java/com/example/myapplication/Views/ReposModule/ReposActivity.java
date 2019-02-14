@@ -42,10 +42,6 @@ public class ReposActivity extends AppCompatActivity implements  ReposActivityMV
 
         reposList=new ArrayList<>();
 
-        List<String>repos=new ArrayList<>();
-
-        repos.add("repos1");
-
         adapter =new ReposRecyclerViewAdapter(getApplicationContext(),reposList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

@@ -4,6 +4,7 @@ package com.example.myapplication.Views.ReposModule;
 import android.util.Log;
 
 import com.example.myapplication.API.Models.GitHubRepos;
+import com.example.myapplication.Views.CommitsModule.CommitsActivityMVPBase;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ReposActivityPresenter implements  ReposActivityMVPBase.Presenter{
 
     @Override
     public void loadData() {
-        String userName="anirudh1092";
+        String userName="PhilJay";
        subscription= model.getRepos(userName)
                 .subscribeOn(Schedulers.io())
                  .observeOn(AndroidSchedulers.mainThread())
@@ -52,6 +53,8 @@ public class ReposActivityPresenter implements  ReposActivityMVPBase.Presenter{
     public void unsubscribeRX() {
         subscription.dispose();
     }
+
+
 
     @Override
     public void setView(ReposActivityMVPBase.View view) {
