@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.DiffsModule.DiffActivity">
+    tools:context=".Views.DiffFileModule.DiffActivity">
 
 </android.support.constraint.ConstraintLayout>

@@ -33,7 +33,6 @@ public class CommitsActivityPresenter implements CommitsActivityMVPBase.CommitsP
                 .subscribeWith(new DisposableObserver<List<UserCommits>>() {
                     @Override
                     public void onNext(List<UserCommits> userCommits) {
-
                         for(int i=0;i<userCommits.size();i++){
                             view.upadateData(userCommits.get(i));
                         }

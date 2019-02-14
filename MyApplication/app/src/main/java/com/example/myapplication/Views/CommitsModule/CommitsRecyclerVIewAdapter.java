@@ -1,6 +1,7 @@
 package com.example.myapplication.Views.CommitsModule;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.myapplication.API.Models.UserCommitDiffs;
 import com.example.myapplication.API.Models.UserCommits;
 import com.example.myapplication.R;
+import com.example.myapplication.Views.DiffFileModule.DiffActivity;
 
 import java.util.List;
 
@@ -54,6 +55,15 @@ public class CommitsRecyclerVIewAdapter extends RecyclerView.Adapter<CommitsRecy
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             userCommitsTextView=itemView.findViewById(R.id.textView_githubRepos);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent= new Intent(context, DiffActivity.class);
+                    //intent.putExtra("SelectedRepo",dataList.get(position));
+                    context.startActivity(intent);
+                }
+            });
+
         }
     }
 

@@ -23,7 +23,7 @@ public interface GitHubService {
 
 
     @GET("/repos/{user}/{repoName}/commits/{sha}")
-    Observable<List<UserCommitDiffs>> getDiffs(@Path("user")String user,
+    Observable<UserCommitDiffs> getDiffs(@Path("user")String user,
                                                @Path("repoName")String repoName,
                                                @Path("sha")String sha);
 

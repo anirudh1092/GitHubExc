@@ -33,10 +33,10 @@ public class ReposActivityPresenter implements  ReposActivityMVPBase.Presenter{
                  .subscribeWith(new DisposableObserver<List<GitHubRepos>>() {
                      @Override
                      public void onNext(List<GitHubRepos> gitHubRepos) {
-                         for(int i=0;i<gitHubRepos.size();i++)
-                            view.updateData(gitHubRepos.get(i));
+                         for (int i = 0; i < gitHubRepos.size(); i++) {
+                             view.updateData(gitHubRepos.get(i));
+                         }
                      }
-
                      @Override
                      public void onError(Throwable e) {
                          Log.d(TAG, "onError: "+e.getMessage());

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.myapplication.API.Models.GitHubRepos;
 import com.example.myapplication.R;
@@ -58,7 +59,7 @@ public class ReposActivity extends AppCompatActivity implements  ReposActivityMV
 
     @Override
     public void updateData(GitHubRepos data) {
-
+        Log.d("temp", "updateData:Update Repos Data "+data.getName());
         reposList.add(data);
         adapter.notifyItemInserted(reposList.size() - 1);
     }
