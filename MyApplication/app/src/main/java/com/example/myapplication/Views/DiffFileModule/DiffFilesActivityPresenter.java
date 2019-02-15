@@ -28,12 +28,9 @@ public class DiffFilesActivityPresenter implements DiffFilesActivityMVPBase.Diff
 
 
     @Override
-    public void loadData() {
-        String username="PhilJay";
-        String repoName="Alamofire";
-        String sha="092022fb5b1580e28ce1f1344484e04820c168e0";
+    public void loadData(String userName,String repoName,String sha) {
 
-        diffModel.getDiffs(username,repoName,sha)
+        diffModel.getDiffs(userName,repoName,sha)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DisposableObserver<UserCommitDiffs>() {

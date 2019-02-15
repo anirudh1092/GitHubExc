@@ -80,9 +80,6 @@ public class CodeDiffsActivity extends AppCompatActivity {
 
     public String getPatch(){
         String temp= getSelectedRepo().getPatch();
-        String[] strings=temp.split("@@");
-        Log.d(TAG, "getPatch: "+strings[2]);
-
         return temp;
     }
 

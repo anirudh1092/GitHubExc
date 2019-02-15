@@ -30,7 +30,8 @@ import butterknife.ButterKnife;
 public class CommitsActivity extends AppCompatActivity implements  CommitsActivityMVPBase.CommitsView{
 
     private final String USERNAME="UserNameString";
-
+    private String userName="";
+    private String repoName="";
     List<UserCommits> commitsList;
     CommitsRecyclerVIewAdapter adapter;
 
@@ -52,7 +53,8 @@ public class CommitsActivity extends AppCompatActivity implements  CommitsActivi
 
         adapter =new CommitsRecyclerVIewAdapter(commitsList,getApplicationContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        userName=getUserName();
+        repoName=getSelectedRepo().getName();
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
@@ -63,23 +65,26 @@ public class CommitsActivity extends AppCompatActivity implements  CommitsActivi
 
     @Override
     public void upadateData(UserCommits commit) {
-        commitsList.add(commit);
-        adapter.notifyItemInserted(commitsList.size()-1);
-        Log.d("temp", "upadateData: "+commit.getAuthor().getLogin());
-    }
+        if(commit.getAuthor()!=null &&
+                commit.getAuthor().getLogin()!=null
+                && !commitsList.contains(commit)){
+            commitsList.add(commit);
+            adapter.notifyItemInserted(commitsList.size()-1);
+        }
+     }
 
     @Override
     protected void onStart() {
         super.onStart();
         presenter.setView(this);
-         presenter.loadData(getUserName(),getSelectedCommit().getName());
+        if(userName!=null && repoName!=null)
+         presenter.loadData(userName,repoName);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         presenter.unsubscribeRx();
-        commitsList.clear();
         adapter.notifyDataSetChanged();
 
 
@@ -89,11 +94,10 @@ public class CommitsActivity extends AppCompatActivity implements  CommitsActivi
     protected void onPause() {
         super.onPause();
         presenter.unsubscribeRx();
-        commitsList.clear();
         adapter.notifyDataSetChanged();
     }
 
-    public GitHubRepos getSelectedCommit(){
+    public GitHubRepos getSelectedRepo(){
         Gson gson = new Gson();
         GitHubRepos repo = gson.fromJson(getIntent()
                 .getStringExtra("Selected Repo"), GitHubRepos.class);

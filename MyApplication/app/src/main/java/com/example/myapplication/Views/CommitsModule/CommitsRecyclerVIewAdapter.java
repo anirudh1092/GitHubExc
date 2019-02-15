@@ -42,8 +42,11 @@ public class CommitsRecyclerVIewAdapter extends RecyclerView.Adapter<CommitsRecy
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        String commitName=userCommits.get(i).getAuthor().getLogin();
-        viewHolder.userCommitsTextView.setText(commitName);
+        if (userCommits.get(i).getAuthor().getLogin() != null) {
+            String commitName=userCommits.get(i).getAuthor().getLogin();
+
+            viewHolder.userCommitsTextView.setText(commitName);
+        }
     }
 
     @Override

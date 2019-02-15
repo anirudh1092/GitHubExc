@@ -2,6 +2,8 @@ package com.example.myapplication.Views.ReposModule;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication.API.Models.GitHubRepos;
+import com.example.myapplication.API.Models.UserCommits;
 import com.example.myapplication.R;
 import com.example.myapplication.Views.CommitsModule.CommitsActivity;
 import com.google.gson.Gson;
@@ -21,6 +24,7 @@ import butterknife.BindView;
 
 public class ReposRecyclerViewAdapter extends RecyclerView.Adapter<ReposRecyclerViewAdapter.ViewHolder> {
 
+    private static final String SELECTEDREPO ="SelectedREPO";
     public final String TAG="ReposRecyclerViewAdapter";
 
     List<GitHubRepos> dataList;
@@ -70,10 +74,19 @@ public class ReposRecyclerViewAdapter extends RecyclerView.Adapter<ReposRecycler
                     Intent intent= new Intent(context, CommitsActivity.class);
                     Gson gson = new Gson();
                     String selectedRepo = gson.toJson(dataList.get(position));
+                    saveSelectedRepo(dataList.get(position).getName());
                     intent.putExtra("Selected Repo", selectedRepo);
                     context.startActivity(intent);
                 }
             });
+
+
+        }
+        public void saveSelectedRepo(String selectedRepos){
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(SELECTEDREPO,selectedRepos);
+            editor.apply();
         }
     }
 

@@ -19,7 +19,7 @@ public interface DiffFilesActivityMVPBase {
 
     }
     public interface DiffPresenter{
-        public void loadData();
+        public void loadData(String userName,String repoName,String sha);
         public void unsubscribeRx();
         public void setView(DiffFilesActivityMVPBase.DiffView view);
     }
