@@ -20,7 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.DiffFileModule.DiffActivity"></activity>
+        <activity android:name=".Views.DiffFileModule.DiffFilesActivity" />
+        <activity android:name=".Views.CodeDiffsModule.CodeDiffsActivity"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize"></activity>
     </application>
 
 </manifest>

@@ -4,11 +4,11 @@ import com.example.myapplication.API.Models.UserCommitDiffs;
 
 import io.reactivex.Observable;
 
-public class DiffActivityModel implements  DiffActivityMVPBase.DiffModel {
+public class DiffFilesActivityModel implements  DiffFilesActivityMVPBase.DiffModel {
 
-    private DiffsRepository repository;
+    private DiffsFilesRepository repository;
 
-    public DiffActivityModel(DiffsRepository repository) {
+    public DiffFilesActivityModel(DiffsFilesRepository repository) {
         this.repository = repository;
     }
 

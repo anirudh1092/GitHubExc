@@ -13,7 +13,7 @@ public class UserCommitDiffs {
         this.files = files;
     }
 
-    public List<UserCommitFiles>    getFiles() {
+    public List<UserCommitFiles> getFiles() {
         return files;
     }
 }

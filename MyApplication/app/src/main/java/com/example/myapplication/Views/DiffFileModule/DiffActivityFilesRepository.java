@@ -11,11 +11,11 @@ import javax.inject.Singleton;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 
-public class DiffActivityRepository implements DiffsRepository {
+public class DiffActivityFilesRepository implements DiffsFilesRepository {
 
     private GitHubService service;
     List<UserCommitDiffs> diffsList;
-    public DiffActivityRepository(GitHubService service) {
+    public DiffActivityFilesRepository(GitHubService service) {
         this.service = service;
         diffsList=new ArrayList<>();
     }

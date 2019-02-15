@@ -18,7 +18,7 @@ public interface CommitsActivityMVPBase {
 
     interface CommitsPresenter{
 
-        public void loadData();
+        public void loadData(String userName,String slectedRepoName);
         public void unsubscribeRx();
         public void setView(CommitsActivityMVPBase.CommitsView view);
 

@@ -21,14 +21,15 @@ public interface ReposActivityMVPBase {
 
         public void updateData(GitHubRepos data);
 
+        public void showProgressBar();
 
-
+        public void hideProgressBar();
     }
 
 
     public interface Presenter{
 
-        public void loadData();
+        public void loadData(String userName);
 
         public void unsubscribeRX();
 

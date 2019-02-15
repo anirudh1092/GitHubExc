@@ -25,8 +25,8 @@ public class ReposActivityPresenter implements  ReposActivityMVPBase.Presenter{
 
 
     @Override
-    public void loadData() {
-        String userName="PhilJay";
+    public void loadData(String userName) {
+       view.showProgressBar();
        subscription= model.getRepos(userName)
                 .subscribeOn(Schedulers.io())
                  .observeOn(AndroidSchedulers.mainThread())
@@ -45,6 +45,7 @@ public class ReposActivityPresenter implements  ReposActivityMVPBase.Presenter{
                      @Override
                      public void onComplete() {
                          Log.d(TAG, "onComplete: ");
+                         view.hideProgressBar();
                      }
                  });
     }

@@ -10,19 +10,19 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class DiffActivityPresenter implements DiffActivityMVPBase.DiffPresenter {
+public class DiffFilesActivityPresenter implements DiffFilesActivityMVPBase.DiffPresenter {
 
     private final String TAG=getClass().getName();
 
 
-    private DiffActivityMVPBase.DiffModel diffModel;
+    private DiffFilesActivityMVPBase.DiffModel diffModel;
 
     Disposable subscription=null;
 
-    private DiffActivityMVPBase.DiffView view;
+    private DiffFilesActivityMVPBase.DiffView view;
 
 
-    public DiffActivityPresenter(DiffActivityMVPBase.DiffModel diffModel) {
+    public DiffFilesActivityPresenter(DiffFilesActivityMVPBase.DiffModel diffModel) {
         this.diffModel = diffModel;
     }
 
@@ -30,8 +30,8 @@ public class DiffActivityPresenter implements DiffActivityMVPBase.DiffPresenter 
     @Override
     public void loadData() {
         String username="PhilJay";
-        String repoName="MPAndroidChart";
-        String sha="aea2ff3417e30d6d4b1ce7e777cbd8bc83e1c95d";
+        String repoName="Alamofire";
+        String sha="092022fb5b1580e28ce1f1344484e04820c168e0";
 
         diffModel.getDiffs(username,repoName,sha)
                 .subscribeOn(Schedulers.io())
@@ -39,9 +39,12 @@ public class DiffActivityPresenter implements DiffActivityMVPBase.DiffPresenter 
                 .subscribe(new DisposableObserver<UserCommitDiffs>() {
                     @Override
                     public void onNext(UserCommitDiffs userCommitDiffs) {
+
+
                         for(UserCommitFiles file: userCommitDiffs.getFiles()){
                             Log.d(TAG, "onNext:File Names "+file.getFilename());
-                            Log.d(TAG, "onNext: Fila Patch  "+file.getPatch());
+                           // Log.d(TAG, "onNext: File Patch  "+file.getPatch());
+                            view.updateData(file);
                         }
                     }
 
@@ -67,7 +70,7 @@ public class DiffActivityPresenter implements DiffActivityMVPBase.DiffPresenter 
     }
 
     @Override
-    public void setView(DiffActivityMVPBase.DiffView view) {
+    public void setView(DiffFilesActivityMVPBase.DiffView view) {
             this.view=view;
     }
 }

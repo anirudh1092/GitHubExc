@@ -35,6 +35,9 @@
         android:layout_marginTop="20dp"
         android:hint="@string/enter_user_name"
         android:textColor="@color/colorBlack"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:imeOptions="actionSend"
         app:layout_constraintBottom_toBottomOf="@+id/search_button"
         app:layout_constraintLeft_toRightOf="@+id/search_button"
         app:layout_constraintTop_toTopOf="parent" />

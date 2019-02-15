@@ -5,7 +5,7 @@ import com.example.myapplication.API.Models.UserCommitDiffs;
 
 import io.reactivex.Observable;
 
-public interface DiffsRepository {
+public interface DiffsFilesRepository {
 
 
     //TODo : Implement Methods which can be used to check if the data is in memory and cacahe accordingly

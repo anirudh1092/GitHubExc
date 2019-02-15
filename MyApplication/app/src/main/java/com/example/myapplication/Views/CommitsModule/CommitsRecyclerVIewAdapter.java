@@ -12,7 +12,8 @@ import android.widget.TextView;
 
 import com.example.myapplication.API.Models.UserCommits;
 import com.example.myapplication.R;
-import com.example.myapplication.Views.DiffFileModule.DiffActivity;
+import com.example.myapplication.Views.DiffFileModule.DiffFilesActivity;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ import static android.content.ContentValues.TAG;
 
 public class CommitsRecyclerVIewAdapter extends RecyclerView.Adapter<CommitsRecyclerVIewAdapter.ViewHolder> {
 
+    private final String ARGS_SELECTED_COMMIT="SelectedCommit";
     List<UserCommits> userCommits;
     Context context;
 
@@ -40,7 +42,7 @@ public class CommitsRecyclerVIewAdapter extends RecyclerView.Adapter<CommitsRecy
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        String commitName=userCommits.get(i).getSha();
+        String commitName=userCommits.get(i).getAuthor().getLogin();
         viewHolder.userCommitsTextView.setText(commitName);
     }
 
@@ -58,8 +60,11 @@ public class CommitsRecyclerVIewAdapter extends RecyclerView.Adapter<CommitsRecy
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent= new Intent(context, DiffActivity.class);
-                    //intent.putExtra("SelectedRepo",dataList.get(position));
+                    int position=getLayoutPosition();
+                    Intent intent= new Intent(context, DiffFilesActivity.class);
+                    Gson gson = new Gson();
+                    String selectedCommit = gson.toJson(userCommits.get(position));
+                    intent.putExtra(ARGS_SELECTED_COMMIT, selectedCommit);
                     context.startActivity(intent);
                 }
             });

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.myapplication.API.Models.GitHubRepos;
 import com.example.myapplication.R;
 import com.example.myapplication.Views.CommitsModule.CommitsActivity;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -67,7 +68,9 @@ public class ReposRecyclerViewAdapter extends RecyclerView.Adapter<ReposRecycler
                 public void onClick(View v) {
                     int position=getLayoutPosition();
                     Intent intent= new Intent(context, CommitsActivity.class);
-                    //intent.putExtra("SelectedRepo",dataList.get(position));
+                    Gson gson = new Gson();
+                    String selectedRepo = gson.toJson(dataList.get(position));
+                    intent.putExtra("Selected Repo", selectedRepo);
                     context.startActivity(intent);
                 }
             });

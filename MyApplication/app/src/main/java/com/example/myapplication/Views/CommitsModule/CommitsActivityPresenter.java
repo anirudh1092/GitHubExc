@@ -25,9 +25,9 @@ public class CommitsActivityPresenter implements CommitsActivityMVPBase.CommitsP
     }
 
     @Override
-    public void loadData() {
+    public void loadData(String userName,String repoUserName) {
         subscription=model
-                .getUserCommits("anirudh1092","GitHubDemo")
+                .getUserCommits(userName,repoUserName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<List<UserCommits>>() {
