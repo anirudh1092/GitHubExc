@@ -30,6 +30,7 @@ public class CodeDiffsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_code_diffs);
         getDiffString(getPatch());
         addFragment();
+        setTitle("Diffs");
     }
 
     private void addFragment(){
@@ -56,8 +57,9 @@ public class CodeDiffsActivity extends AppCompatActivity {
 
 
     public String getDiffString(String str){
+        if(str==null||str.length()==0)return "";
         String str1=str.split("@@")[1].split("\\+")[1].split(",")[0];
-        int index=Integer.parseInt(str1);
+        int GIT index=Integer.parseInt(str1);
         leftStringBuilder.append(str.split("@@")[1]+"\t\t\t");
         rightStringBuilder.append("\n");
         String[] strings=str.split("@@")[2].split("\\n");

@@ -49,7 +49,7 @@ public class DiffFilesActivity extends AppCompatActivity implements DiffFilesAct
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diff);
-
+        setTitle("Diff Files");
          ((App) getApplication()).getComponent().injectDiffActivity(this);
 
          ButterKnife.bind(this);

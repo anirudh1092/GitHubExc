@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.API.Models.GitHubRepos;
 import com.example.myapplication.R;
@@ -69,6 +70,8 @@ public class ReposActivity extends AppCompatActivity implements  ReposActivityMV
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         recyclerView.setAdapter(adapter);
+
+        setTitle("Repositories");
 
 
         userNameEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -148,5 +151,8 @@ public class ReposActivity extends AppCompatActivity implements  ReposActivityMV
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(USERNAME,name);
         editor.apply();
+    }
+    public void showToastMessage(String error){
+        Toast.makeText(getApplicationContext(),error,Toast.LENGTH_SHORT).show();
     }
 }

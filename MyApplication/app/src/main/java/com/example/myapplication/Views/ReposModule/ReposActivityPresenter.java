@@ -40,6 +40,8 @@ public class ReposActivityPresenter implements  ReposActivityMVPBase.Presenter{
                      @Override
                      public void onError(Throwable e) {
                          Log.d(TAG, "onError: "+e.getMessage());
+                         view.hideProgressBar();
+                         view.showToastMessage(e.getMessage());
                      }
 
                      @Override

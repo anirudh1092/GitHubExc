@@ -34,6 +34,7 @@ public class CommitsActivity extends AppCompatActivity implements  CommitsActivi
     private String repoName="";
     List<UserCommits> commitsList;
     CommitsRecyclerVIewAdapter adapter;
+    List<String>tempList=new ArrayList<>();
 
     @BindView(R.id.recycler_view_commits)
     RecyclerView recyclerView;
@@ -48,6 +49,7 @@ public class CommitsActivity extends AppCompatActivity implements  CommitsActivi
         setContentView(R.layout.activity_commits);
         commitsList=new ArrayList<>();
         ButterKnife.bind(this);
+        setTitle("Commiters");
 
         ((App) getApplication()).getComponent().injectCommitsActivity(this);
 
@@ -67,8 +69,9 @@ public class CommitsActivity extends AppCompatActivity implements  CommitsActivi
     public void upadateData(UserCommits commit) {
         if(commit.getAuthor()!=null &&
                 commit.getAuthor().getLogin()!=null
-                && !commitsList.contains(commit)){
+                && !tempList.contains(commit.getSha())){
             commitsList.add(commit);
+            tempList.add(commit.getSha());
             adapter.notifyItemInserted(commitsList.size()-1);
         }
      }

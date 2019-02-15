@@ -24,6 +24,7 @@ public interface ReposActivityMVPBase {
         public void showProgressBar();
 
         public void hideProgressBar();
+        public void showToastMessage(String error);
     }
 
 
